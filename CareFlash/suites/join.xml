@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Test JOIN" parallel="none">
+
+    <test name="Test JOIN TAB">
+        <classes>
+            <class name="testcases.join.CareFlashJoinTest">
+                <methods>
+                    <include name="testActivateAccount"/>
+                    <include name="testTermsOfUseLink"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
+            <!--  
+            <class name="testcases.join.CareFlashJoinTest"/>
+            
+            <class name="testcases.join.CareFlashJoinTest">
+                <methods>
+                    <include name="testRegistrationText"/>
+                    <include name="testReactivateAccountPopUp"/>
+                    <include name="testRegisterNow"/>
+                    <include name="testInstructionsLink"/>
+                </methods>
+            </class>
+             -->

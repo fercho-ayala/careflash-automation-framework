@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Careflash Automated TCs" basedir="." xmlns:sonar="antlib:org.sonar.ant"  xmlns:ivy="antlib:org.apache.ivy.ant">
+
+    <property name="src" value="./src"/>
+    <property name="lib" value="./lib"/>
+    <property name="bin" value="./bin"/>
+    
+    <property name="language" value="en_US"/>
+    
+    <!-- Directory name where the TestNG report will be saved. -->
+    <property name="testng.output.dir" value="./report" />
+
+    <!-- Define the SonarQube global properties (the most usual way is to pass these properties via the command line) -->
+    <property name="sonar.jdbc.url" value="jdbc:h2:tcp://localhost:9092/sonar" />
+    <property name="sonar.jdbc.username" value="sonar" />
+    <property name="sonar.jdbc.password" value="sonar" />
+    
+    <!-- Define the SonarQube project properties -->
+    <property name="sonar.projectKey" value="org.codehaus.sonar:example-java-ant" />
+    <property name="sonar.projectName" value="Careflash Automated TCs" />
+    <property name="sonar.projectVersion" value="1.0" />
+    <property name="sonar.language" value="java" />
+    <property name="sonar.sources" value="${src}" />
+    <property name="sonar.binaries" value="${bin}" />
+    <property name="sonar.sourceEncoding" value="UTF-8" />
+
+    <!-- Clean up binary and report directory.  -->
+    <target name="clean">
+        <delete dir="${bin}" />
+        <delete dir="${testng.output.dir}" />
+    </target>
+	
+    <target name="cleanAll" depends="clean">
+        <delete dir="${lib}" />
+    </target>
+    
+    <!-- Inicialization of the properties -->
+    <target name="init" depends="clean">
+        <mkdir dir="${bin}" />
+        <!-- Create the output directory. -->        
+        <mkdir dir="${testng.output.dir}"/>
+        <mkdir dir="${testng.output.dir}/xml"/>
+        <mkdir dir="${testng.output.dir}/html"/>
+        <mkdir dir="${testng.output.dir}/html/logs"/>
+        <mkdir dir="${testng.output.dir}/html/images"/>
+    </target>
+
+    <target name="resolve" description="Retrieve dependencies with ivy">
+        <ivy:retrieve />
+    </target>
+
+	<target name="copy-bundles-files">
+	    <copy todir="bin" includeemptydirs="false">
+	        <fileset dir="src" excludes="**/*.java" />
+	    </copy>
+	</target>	
+	
+    <target name="compile" depends="init,copy-bundles-files">
+        <javac source="1.8" encoding="UTF-8" srcdir="${src}" fork="true" destdir="${bin}" includeantruntime="false" includes="**/*.java, **/*.properties" >
+            <classpath>
+                <pathelement path="${bin}">
+                </pathelement>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar" />
+                </fileset>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="runSuites" depends="compile">
+        <!-- Define <testng> task -->
+        <taskdef name="testng" classname="org.testng.TestNGAntTask">
+            <classpath>
+                <pathelement location="${bin}"/>
+                <fileset dir="${lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+            </classpath>
+        </taskdef>
+
+        <!-- Directory path of compiled classes(i.e *.class) -->
+        <path id="classes">
+            <pathelement location="bin"/>
+            <fileset dir="${lib}">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+
+        <testng outputdir="${testng.output.dir}" classpathref="classes" useDefaultListeners="false"
+            listeners="org.testng.reporters.FailedReporter,org.testng.reporters.XMLReporter,
+            org.uncommons.reportng.HTMLReporter,
+            libraries.TestListener,libraries.SuiteListener"
+            verbose="2">
+            <xmlfileset dir="./suites/" includes="${suites}"/>
+
+            <sysproperty key="org.uncommons.reportng.title" value="Careflash - Automated TC Result. - ${browser}"/>
+            <sysproperty key="org.uncommons.reportng.escape-output" value="false"/>
+
+            <sysproperty key="url" value="${url}"/>
+            <sysproperty key="browser" value="${browser}"/>
+            <sysproperty key="language" value="${language}"/>
+            <sysproperty key="folderLogs" value="${testng.output.dir}/html/logs"/>
+            <sysproperty key="folderImages" value="${testng.output.dir}/html/images"/>
+
+        </testng>
+    </target>
+
+    <!-- Define the SonarQube target -->
+    <target name="sonar">
+        <taskdef uri="antlib:org.sonar.ant" resource="org/sonar/ant/antlib.xml">
+            <!-- Update the following line, or put the "sonar-ant-task-*.jar" file in your "$HOME/.ant/lib" folder 
+            <classpath path="path/to/sonar/ant/task/lib/sonar-ant-task-*.jar" />-->
+        </taskdef>
+    
+        <!-- Execute Sonar -->
+        <sonar:sonar />
+    </target>   
+</project>

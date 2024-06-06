@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Login suite" parallel="none">
+
+  <test name="Test Login Correct">
+    <classes>
+      <class name="testcases.login.CareFlashLoginCorrectEmail"/>
+      <class name="testcases.login.CareFlashLoginCorrectUsername"/>
+      <!--   <class name="testcases.login.CareFlashLoginRememberMe"/> -->
+    </classes>
+  </test>
+ 
+  <test name="Test Login Incorrect">
+    <classes>
+      <class name="testcases.login.CareFlashLoginBlank"/>
+      <class name="testcases.login.CareFlashLoginIncorrectEmail"/>
+      <class name="testcases.login.CareFlashLoginIncorrectUsername"/>
+    </classes>
+  </test>
+ 
+        <!-- - 
+    <test name="Test Login Facebook">
+        <classes>
+            <class name="testcases.login.CareFlashLoginFacebookLoggedOut"/>
+            <class name="testcases.login.CareFlashLoginFacebookLoggedIn"/>
+        </classes>
+    </test>
+       -->  
+</suite>

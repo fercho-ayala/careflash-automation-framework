@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="HOME" parallel="none">
+
+    <test name="Test HOME">
+        <classes>
+            <class name="testcases.home.CareFlashHomeTest">
+                <methods>
+                    <include name="testorgotPass"/>
+                </methods>
+            </class>
+            <!--  
+            <class name="testcases.home.CareFlashHomeTest"/>
+            
+            <class name="testcases.home.CareFlashHomeTest">
+                <methods>
+                    <include name="testHomeText"/>
+                    <include name="testHomeLeftScrollbar"/>
+                    <include name="testHomeSocialLinks"/>
+                    <include name="testTellFriendPopUp"/>
+                    <include name="testNewCareCommunityLink"/>
+                    <include name="testNewToCareFlashLink"/>
+                    <include name="testSearchLabel"/>
+                    <include name="testSampleLink"/>
+                    <include name="testForgotPassPopUp"/>
+                    <include name="testSearchLabel"/>
+                    <include name="testSampleLink"/>
+                    <include name="testMoreInfoLink"/>
+                </methods>
+            </class>
+             -->
+        </classes>
+    </test>
+</suite>

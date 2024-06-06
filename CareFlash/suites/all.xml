@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="all suite" parallel="none">
+
+    <test name="Test Footer">
+        <classes>
+            <class name="testcases.footer.CareFlashFooterFAQsLink"/>
+            <class name="testcases.footer.CareFlashFooterPrivacyLink"/>
+            <class name="testcases.footer.CareFlashFooterContacUsLink"/>
+            <class name="testcases.footer.CareFlashFooterTermsOfUseLink"/>
+            <class name="testcases.footer.CareFlashFooterTellAFriendPopUp"/>
+        </classes>
+    </test>
+
+        <test name="Test HOME">
+        <classes>
+            <class name="testcases.home.CareFlashHomeTest"/>
+        </classes>
+    </test>
+
+    <test name="Test Quick Links">
+        <classes>
+            <class name="testcases.quicklinks.CareFlashQuickLinkCreateCommunity"/>
+            <class name="testcases.quicklinks.CareFlashQuickLinkAboutUs"/>
+        </classes>
+    </test>
+
+    <test name="Test TOUR TAB">
+        <classes>
+            <class name="testcases.tour.CareFlashTourTest"/>
+        </classes>
+    </test>
+
+    <test name="Test JOIN TAB">
+        <classes>
+            <class name="testcases.join.CareFlashJoinTest"/>
+        </classes>
+    </test>
+
+    <test name="Test partners" preserve-order="true" order-by-instances="true">
+        <classes>
+            <class name="testcases.partners.CareFlashPartnersTest"/>
+        </classes>
+    </test>
+
+    <test name="Test About Tab">
+        <classes>
+            <class name="testcases.about.CareFlashTeamTest"/>
+            <class name="testcases.about.CareFlashAboutTest"/>
+            <class name="testcases.about.CareFlashContactUsTest"/>
+            <class name="testcases.about.CareFlashFAQsTest"/>
+        </classes>
+    </test>
+
+    <test name="Test Search page">
+        <classes>
+            <class name="testcases.search.CareFlashSearchTest"/>
+        </classes>
+    </test>
+
+    <test name="Test Login Incorrect">
+        <classes>
+            <class name="testcases.login.CareFlashLoginBlank"/>
+            <class name="testcases.login.CareFlashLoginIncorrectEmail"/>
+            <class name="testcases.login.CareFlashLoginIncorrectUsername"/>
+        </classes>
+    </test>
+
+    <test name="Test Login Correct">
+        <classes>
+            <class name="testcases.login.CareFlashLoginCorrectEmail"/>
+            <class name="testcases.login.CareFlashLoginCorrectUsername"/>
+        </classes>
+    </test>
+
+</suite>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="HOME" parallel="none">
+
+<listeners>
+    <listener class-name="libraries.ScreenShotOnFailure" />
+</listeners>
+
+    <test name="Test About Tab" preserve-order="true" order-by-instances="true">
+        <classes>
+            <class name="testcases.about.CareFlashAboutTest"/>
+            <class name="testcases.about.CareFlashFAQsTest"/>
+            <class name="testcases.about.CareFlashTeamTest"/>
+            <class name="testcases.about.CareFlashContactUsTest"/>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Care Community">
+    <test name="Create new Care Community">
+        <classes>
+            <class name="testcases.community.CareFlashiHelpCalendarTest">
+            </class>
+        </classes>
+    </test>
+</suite>
